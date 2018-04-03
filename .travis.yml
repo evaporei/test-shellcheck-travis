@@ -8,5 +8,6 @@ install:
   - shellcheck --version
 
 script:
-  - shellcheck *.sh
+  - shellcheck $(grep -rIzl '^#![[:blank:]]*/bin/sh' ./ | grep .git -v | cat)
+  - shellcheck $(grep -rIzl '^#![[:blank:]]*/bin/bash' ./ | cat)
   - visudo -cf sudoers
